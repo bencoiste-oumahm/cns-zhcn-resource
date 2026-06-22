@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界杯 · 简明指南与访问提醒</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', '宋体', serif;
+            background: #f9f5ec;
+            color: #2e2a24;
+            line-height: 1.7;
+            padding: 2rem 1.5rem;
+        }
+
+        .page {
+            max-width: 860px;
+            margin: 0 auto;
+            background: #fefcf7;
+            padding: 2.8rem 2.5rem;
+            border-radius: 28px;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.04), 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 500;
+            letter-spacing: -0.3px;
+            border-left: 6px solid #c8a477;
+            padding-left: 1.2rem;
+            margin-bottom: 0.8rem;
+            color: #2b231b;
+        }
+
+        .subhead {
+            font-size: 1.1rem;
+            color: #7b6e5d;
+            margin-bottom: 2.2rem;
+            font-style: italic;
+            border-bottom: 1px dashed #ddd6ca;
+            padding-bottom: 0.8rem;
+        }
+
+        .hero-card {
+            background: #efe8db;
+            border-radius: 24px;
+            padding: 1.8rem 2rem;
+            margin-bottom: 2.8rem;
+            box-shadow: inset 0 1px 4px rgba(0,0,0,0.02);
+        }
+
+        .hero-card p {
+            font-size: 1.2rem;
+            color: #3b3227;
+        }
+
+        .hero-card strong {
+            color: #785e3a;
+        }
+
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.8rem;
+            margin: 2.2rem 0;
+        }
+
+        .info-card {
+            background: #fbf9f4;
+            border: 1px solid #e6ded2;
+            border-radius: 20px;
+            padding: 1.6rem 1.6rem 1.8rem;
+            transition: box-shadow 0.2s;
+        }
+
+        .info-card:hover {
+            box-shadow: 0 8px 16px rgba(182, 156, 118, 0.08);
+        }
+
+        .info-card h3 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: #4f3f2e;
+            border-bottom: 1px dotted #d5cbbd;
+            padding-bottom: 0.4rem;
+        }
+
+        .info-card ul {
+            list-style: none;
+            margin-top: 0.6rem;
+        }
+
+        .info-card ul li {
+            padding: 0.2rem 0;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+
+        .info-card ul li::before {
+            content: "•";
+            color: #b3926a;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .audience-box {
+            background: #f5efe6;
+            border-radius: 20px;
+            padding: 1.6rem 1.8rem;
+            margin: 2rem 0 2.2rem;
+        }
+
+        .audience-box h2 {
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin-bottom: 0.6rem;
+            color: #3e3428;
+        }
+
+        .audience-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.2rem;
+            margin: 1rem 0 0.2rem;
+        }
+
+        .audience-tags span {
+            background: #e1d6c6;
+            color: #342d24;
+            padding: 0.25rem 1rem;
+            border-radius: 40px;
+            font-size: 0.95rem;
+        }
+
+        .link-paragraph {
+            background: #fcfaf5;
+            border-left: 4px solid #c8a477;
+            padding: 1.4rem 1.8rem;
+            margin: 2.2rem 0 1.8rem;
+            border-radius: 0 16px 16px 0;
+            font-size: 1.05rem;
+        }
+
+        .link-paragraph a {
+            color: #785e3a;
+            text-decoration: underline wavy #dac09a 1px;
+            text-underline-offset: 4px;
+            font-weight: 500;
+            transition: color 0.15s;
+        }
+
+        .link-paragraph a:hover {
+            color: #3b2b1a;
+            text-decoration: underline wavy #ad8b64 2px;
+        }
+
+        .note-block {
+            background: #f2ede4;
+            padding: 1.2rem 1.6rem;
+            border-radius: 18px;
+            margin: 2rem 0 1.2rem;
+            color: #3b3227;
+            font-size: 0.98rem;
+        }
+
+        .note-block strong {
+            color: #6e563b;
+        }
+
+        .faq-mini {
+            margin: 2.6rem 0 1.2rem;
+            border-top: 1px solid #e0d7ca;
+            padding-top: 1.8rem;
+        }
+
+        .faq-mini details {
+            margin: 0.6rem 0;
+            border-bottom: 1px solid #ede6db;
+            padding-bottom: 0.5rem;
+        }
+
+        .faq-mini summary {
+            font-weight: 500;
+            color: #4e3e2d;
+            cursor: pointer;
+            padding: 0.3rem 0;
+        }
+
+        .faq-mini details p {
+            margin: 0.6rem 0 0.3rem 1.2rem;
+            color: #3f352b;
+        }
+
+        .footnote {
+            margin-top: 2.8rem;
+            font-size: 0.9rem;
+            color: #9a8b78;
+            text-align: center;
+            border-top: 1px solid #e6ddd0;
+            padding-top: 1.6rem;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem 0.8rem;
+            }
+            .page {
+                padding: 1.6rem 1.2rem;
+                border-radius: 20px;
+            }
+            h1 {
+                font-size: 1.9rem;
+                padding-left: 0.9rem;
+            }
+            .grid-2col {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+            .hero-card p {
+                font-size: 1.05rem;
+            }
+            .link-paragraph {
+                padding: 1rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <h1>世界杯 · 简明导航</h1>
+    <div class="subhead">从赛程、观赛到记录 — 一份偏知识型的访问提醒</div>
+
+    <div class="hero-card">
+        <p><strong>世界杯</strong> 是足球领域最具代表性的国际赛事，每四年举办一届，汇集各大洲顶尖球队。本页作为一份轻量指南，帮助你快速了解核心用途、适合哪些人群，并给出访问 <strong>webs-cup26mjm.com</strong> 时的自然提示。</p>
+    </div>
+
+    <div class="grid-2col">
+        <div class="info-card">
+            <h3>📋 用途卡片</h3>
+            <ul>
+                <li>赛事日历与分组查询</li>
+                <li>球队与球员数据回顾</li>
+                <li>历史冠军与经典比赛档案</li>
+                <li>观赛地点与转播参考</li>
+            </ul>
+        </div>
+        <div class="info-card">
+            <h3>🧭 场景速览</h3>
+            <ul>
+                <li>赛前查阅对阵与积分</li>
+                <li>赛时快速核对进球与换人</li>
+                <li>赛后对比统计数据与记录</li>
+                <li>深度浏览历届赛事脉络</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="audience-box">
+        <h2>适合人群</h2>
+        <p style="color:#4a3f32;">不论你是资深球迷、新晋爱好者，还是仅对大型赛事文化感兴趣，以下场景皆有对应内容：</p>
+        <div class="audience-tags">
+            <span>⚽ 核心球迷</span>
+            <span>📊 数据爱好者</span>
+            <span>📚 赛事研究者</span>
+            <span>🎥 转播关注者</span>
+            <span>🌍 文化观察者</span>
+        </div>
+        <p style="margin-top:0.8rem; font-size:0.95rem;">每个群体都能在信息卡片中找到契合自己需求的切入角度，从基础赛程到深层记录均有覆盖。</p>
+    </div>
+
+    <div class="link-paragraph">
+        <p>如果你希望进一步获取赛程、历史数据或参赛队伍详情，可直接浏览 <a href="https://webs-cup26mjm.com">世界杯</a> 相关内容页面。该站点整合了多届赛事的结构化信息，并保持更新，适合作为日常参考来源之一。</p>
+    </div>
+
+    <div class="note-block">
+        <strong>🔔 访问提醒：</strong> 由于赛事期间信息变动较快，建议以官方发布渠道为第一信源。本页仅为聚合式介绍，不替代任何官方公告。使用 <a href="https://webs-cup26mjm.com" style="color:#5f4d36;text-decoration:underline dotted;">世界杯</a> 相关数据时留意时效性，部分历史记录可能存在校正版本。
+    </div>
+
+    <div class="faq-mini">
+        <h3 style="font-weight:500;color:#3e3428;margin-bottom:0.6rem;">❓ 常见疑问摘要</h3>
+        <details>
+            <summary>该网站是否包含所有届次数据？</summary>
+            <p>平台覆盖从首届至今的主要赛事档案，但部分早期场次细节可能因记录方式差异而有所简略，建议交叉核对。</p>
+        </details>
+        <details>
+            <summary>移动端浏览体验如何？</summary>
+            <p>页面已适配不同屏幕宽度，卡片与导航区域在手机和平板上均可正常阅读，加载速度因网络环境而异。</p>
+        </details>
+        <details>
+            <summary>是否需要注册或付费？</summary>
+            <p>基础浏览与查询功能无需注册，目前未发现强制付费环节；若遇到特殊提示请以页面实际说明为准。</p>
+        </details>
+    </div>
+
+    <div class="footnote">
+        本页为独立介绍内容 · 信息仅供指引参考 · 实际以 webs-cup26mjm.com 呈现为准
+    </div>
+
+</div>
+</body>
+</html>
