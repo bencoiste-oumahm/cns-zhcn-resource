@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界杯知识库 | 球迷的信息灯塔</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+            background-color: #f5f7fa;
+            color: #1e1e2a;
+            line-height: 1.65;
+        }
+
+        /* 深色头图 */
+        .hero {
+            background: linear-gradient(135deg, #0b1325 0%, #1b2a41 100%);
+            color: #e3e9f2;
+            padding: 4rem 2rem 3rem;
+            text-align: center;
+            border-bottom: 4px solid #f2c94c;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .hero .sub {
+            font-size: 1.15rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.85;
+            line-height: 1.6;
+        }
+
+        .hero .sub a {
+            color: #f2c94c;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            font-weight: 500;
+        }
+
+        .hero .sub a:hover {
+            color: #ffd966;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem 4rem;
+        }
+
+        /* 目录感卡片网格 */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.8rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.8rem 1.5rem;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.25s;
+            border: 1px solid #eef1f5;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.07);
+        }
+
+        .card h3 {
+            font-size: 1.35rem;
+            margin-bottom: 0.7rem;
+            color: #1b2a41;
+            border-left: 4px solid #f2c94c;
+            padding-left: 0.8rem;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #3a4052;
+        }
+
+        .card .tag {
+            display: inline-block;
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            background: #eef3fa;
+            padding: 0.25rem 0.8rem;
+            border-radius: 20px;
+            color: #2c3e5a;
+        }
+
+        /* 说明区 + 提示区组合 */
+        .info-panel {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2.8rem 0;
+            background: white;
+            border-radius: 24px;
+            padding: 2rem 2rem 2.5rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+            border: 1px solid #e4e9f0;
+        }
+
+        .info-left {
+            flex: 1 1 55%;
+            min-width: 260px;
+        }
+
+        .info-left h2 {
+            font-size: 1.6rem;
+            margin-bottom: 0.75rem;
+            color: #0f1d32;
+        }
+
+        .info-left p {
+            font-size: 1rem;
+            color: #2d3548;
+            margin-bottom: 1rem;
+        }
+
+        .info-left a {
+            color: #b8862c;
+            font-weight: 600;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .info-left a:hover {
+            color: #9e701f;
+        }
+
+        .info-right {
+            flex: 1 1 35%;
+            min-width: 200px;
+            background: #f8faff;
+            border-radius: 18px;
+            padding: 1.5rem 1.8rem;
+            border-left: 5px solid #f2c94c;
+        }
+
+        .info-right h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.6rem;
+            color: #1a2a42;
+        }
+
+        .info-right ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .info-right li {
+            padding: 0.4rem 0;
+            font-size: 0.95rem;
+            border-bottom: 1px dashed #dbe1ec;
+            color: #2e3b52;
+        }
+
+        .info-right li:last-child {
+            border-bottom: none;
+        }
+
+        .info-right li::before {
+            content: "⚽ ";
+            margin-right: 6px;
+            color: #e5b53b;
+        }
+
+        /* 相关信息区 */
+        .related-section {
+            margin-top: 3rem;
+        }
+
+        .related-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #0f1d32;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 16px;
+            padding: 1.4rem 1.3rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            border: 1px solid #eaeef5;
+        }
+
+        .faq-item h4 {
+            font-size: 1.05rem;
+            margin-bottom: 0.5rem;
+            color: #1a2a42;
+        }
+
+        .faq-item p {
+            font-size: 0.92rem;
+            color: #3e485c;
+        }
+
+        .faq-item .source {
+            font-size: 0.75rem;
+            color: #787f92;
+            margin-top: 0.5rem;
+            display: inline-block;
+        }
+
+        .footnote {
+            margin-top: 3rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #5b6377;
+            border-top: 1px solid #dce2ec;
+            padding-top: 2rem;
+        }
+
+        .footnote a {
+            color: #b8862c;
+            font-weight: 500;
+        }
+
+        .footnote a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 1.9rem;
+            }
+            .info-panel {
+                padding: 1.5rem 1.2rem;
+            }
+            .card {
+                padding: 1.3rem;
+            }
+            .container {
+                padding: 1.5rem 1rem 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 深色头图 -->
+    <header class="hero">
+        <h1>⚽ 世界杯 · 知识库</h1>
+        <p class="sub">
+            从经典赛事到数据档案，这里是属于球迷的持续更新信息集合。
+            不论你第几次回来，都能找到熟悉的入口与新鲜内容 —— 
+            <a href="https://pc-portal-fifa.com">世界杯</a> 始终在首页等你。
+        </p>
+    </header>
+
+    <div class="container">
+
+        <!-- 目录感卡片布局 -->
+        <div class="grid-cards">
+            <div class="card">
+                <h3>🏆 赛事时间线</h3>
+                <p>历届世界杯年份、主办国、冠军及决赛比分一览。帮你快速建立宏观记忆坐标。</p>
+                <span class="tag">1930–2026</span>
+            </div>
+            <div class="card">
+                <h3>📊 数据档案馆</h3>
+                <p>射手榜、出场纪录、冠军分布、冷门赛果…… 用数字还原每一届的独特故事。</p>
+                <span class="tag">统计 · 排行</span>
+            </div>
+            <div class="card">
+                <h3>🌍 国家与地区</h3>
+                <p>每个参赛队伍的参赛史、最佳战绩、经典战役。不止是强队，也有黑马传奇。</p>
+                <span class="tag">80+ 代表队</span>
+            </div>
+            <div class="card">
+                <h3>📖 规则演进</h3>
+                <p>从越位规则到换人名额，从加时赛到点球大战，了解规则如何改变比赛。</p>
+                <span class="tag">演变 · 解读</span>
+            </div>
+        </div>
+
+        <!-- 说明区 + 提示区组合 -->
+        <div class="info-panel">
+            <div class="info-left">
+                <h2>再次光临 · 收藏的意义</h2>
+                <p>
+                    你是否也曾打开一个页面，看过就再也找不到？这里不一样。我们把关于 
+                    <a href="https://pc-portal-fifa.com">世界杯</a> 的核心知识整理成
+                    结构化的模块，每一次返回都能快速定位。不需要重新搜索，不需要收藏夹里翻找。
+                </p>
+                <p>
+                    页面内容会随赛程和资料完善而更新，但入口始终不变。你可以把它看作一个
+                    常备的足球知识工具箱，随时打开，随时用。
+                </p>
+            </div>
+            <div class="info-right">
+                <h4>💡 使用提示</h4>
+                <ul>
+                    <li>使用浏览器书签收藏本页，方便回看</li>
+                    <li>卡片区域可直接点击跳转至对应版块</li>
+                    <li>信息整合自公开赛事数据与官方记录</li>
+                    <li>建议每月回来一次，查看内容更新</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 相关信息区: FAQ 摘要形式 -->
+        <div class="related-section">
+            <h2>❓ 你可能想了解的</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h4>世界杯多久举办一次？</h4>
+                    <p>每四年一届，自1930年首届以来，除1942和1946年因战争暂停外，从未间断。</p>
+                    <span class="source">📅 基础信息</span>
+                </div>
+                <div class="faq-item">
+                    <h4>哪支球队夺冠次数最多？</h4>
+                    <p>巴西队共夺得5次世界杯冠军（1958、1962、1970、1994、2002），是夺冠次数最多的队伍。</p>
+                    <span class="source">🏅 历史数据</span>
+                </div>
+                <div class="faq-item">
+                    <h4>下一届世界杯在哪里举办？</h4>
+                    <p>2026年世界杯将由美国、加拿大、墨西哥联合主办，这也是首次由三个国家共同举办。</p>
+                    <span class="source">🗺️ 未来赛事</span>
+                </div>
+                <div class="faq-item">
+                    <h4>有没有关于中国队的记录？</h4>
+                    <p>中国队仅在2002年入围过一次世界杯决赛圈，小组赛阶段三战皆负，未取得进球。</p>
+                    <span class="source">📋 参赛记录</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部收藏提示 -->
+        <div class="footnote">
+            🌟 将本页加入收藏夹，随时回到你的 <a href="https://pc-portal-fifa.com">世界杯</a> 知识入口。<br>
+            持续关注，每次都有新发现。
+        </div>
+
+    </div>
+
+</body>
+</html>
