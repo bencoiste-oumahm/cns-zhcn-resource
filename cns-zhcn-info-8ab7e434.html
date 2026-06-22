@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界杯 · 知识库 · 持续关注的入口</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f5fbfa;
+            color: #1b2e2c;
+            line-height: 1.6;
+            padding: 1.5rem;
+            min-height: 100vh;
+        }
+        .page {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        /* header / hero */
+        .hero {
+            margin-bottom: 2.5rem;
+            padding: 2rem 1.5rem 1.8rem;
+            background: linear-gradient(145deg, #e5f3ef 0%, #d0e8e2 100%);
+            border-radius: 32px;
+            box-shadow: 0 8px 20px rgba(0, 80, 70, 0.06);
+        }
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            color: #0a3d38;
+            margin-bottom: 0.5rem;
+        }
+        .hero .sub {
+            font-size: 1.05rem;
+            color: #2b5a53;
+            max-width: 38rem;
+            border-left: 4px solid #3a9b8a;
+            padding-left: 1rem;
+            margin-top: 0.25rem;
+        }
+        .hero .sub a {
+            color: #0d5e52;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-color: #7fc2b4;
+            font-weight: 500;
+        }
+        .hero .sub a:hover {
+            color: #083d35;
+            text-decoration-color: #3a9b8a;
+        }
+        .meta-note {
+            display: inline-block;
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            color: #46766c;
+            background: #d7ede7;
+            padding: 0.2rem 1rem 0.2rem 0.9rem;
+            border-radius: 40px;
+            letter-spacing: 0.02em;
+        }
+
+        /* grid 卡片区（目录感） */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.6rem;
+            margin: 2rem 0 2.2rem;
+        }
+        @media (min-width: 540px) {
+            .grid-cards {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (min-width: 820px) {
+            .grid-cards {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+        .card {
+            background: white;
+            border-radius: 24px;
+            padding: 1.6rem 1.3rem 1.3rem;
+            box-shadow: 0 4px 12px rgba(40, 100, 85, 0.06);
+            border: 1px solid #dcebe6;
+            transition: all 0.15s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .card:hover {
+            border-color: #82c2b2;
+            box-shadow: 0 6px 18px rgba(50, 120, 100, 0.08);
+            transform: translateY(-2px);
+        }
+        .card .emoji-badge {
+            font-size: 1.8rem;
+            margin-bottom: 0.25rem;
+        }
+        .card h3 {
+            font-weight: 500;
+            font-size: 1.25rem;
+            color: #093d36;
+            margin: 0.3rem 0 0.5rem;
+        }
+        .card p {
+            font-size: 0.95rem;
+            color: #2b5049;
+            margin-bottom: 0.75rem;
+            flex: 1;
+        }
+        .card .tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            background: #dff0ea;
+            color: #0b5548;
+            padding: 0.1rem 0.7rem;
+            border-radius: 20px;
+            margin-right: 0.3rem;
+            margin-bottom: 0.2rem;
+        }
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0.4rem;
+            border-top: 1px dashed #c7ddd6;
+            padding-top: 0.7rem;
+            font-size: 0.85rem;
+            color: #3d7468;
+        }
+        .card-footer .ref-link {
+            color: #0b6b5b;
+            text-decoration: none;
+            font-weight: 480;
+            border-bottom: 1px dotted #7fc2b4;
+        }
+        .card-footer .ref-link:hover {
+            border-bottom: 1px solid #2f9b86;
+            color: #07443b;
+        }
+
+        /* 说明区 / 提示区 (合并为两个侧边块) */
+        .info-blocks {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem;
+            margin: 2rem 0 2.5rem;
+        }
+        .info-block {
+            flex: 1 1 240px;
+            background: #ffffffdd;
+            backdrop-filter: blur(2px);
+            background: #f0f8f5;
+            border-radius: 28px;
+            padding: 1.6rem 1.5rem;
+            box-shadow: 0 2px 10px rgba(30, 80, 70, 0.04);
+        }
+        .info-block h4 {
+            font-weight: 500;
+            font-size: 1.1rem;
+            color: #0c4b41;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
+        }
+        .info-block p, .info-block li {
+            font-size: 0.93rem;
+            color: #1b423c;
+        }
+        .info-block ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .info-block li {
+            padding: 0.2rem 0;
+            border-bottom: 1px solid #d1e6df;
+        }
+        .info-block li:last-child {
+            border-bottom: none;
+        }
+        .info-block .highlight {
+            background: #cbe5dc;
+            padding: 0 0.4rem;
+            border-radius: 6px;
+            font-weight: 450;
+        }
+
+        /* FAQ 摘要 (简洁) */
+        .faq-section {
+            background: #ecf6f2;
+            border-radius: 28px;
+            padding: 1.8rem 1.6rem;
+            margin: 2rem 0 1.8rem;
+        }
+        .faq-section h4 {
+            font-weight: 500;
+            font-size: 1.1rem;
+            color: #09463e;
+            margin-bottom: 1rem;
+            letter-spacing: 0.01em;
+        }
+        .faq-item {
+            margin-bottom: 0.9rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid #c7ddd6;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .faq-q {
+            font-weight: 480;
+            color: #104f44;
+            display: block;
+            margin-bottom: 0.15rem;
+        }
+        .faq-a {
+            color: #2a5c52;
+            font-size: 0.9rem;
+        }
+        .faq-a a {
+            color: #0f6959;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            text-decoration-thickness: 1px;
+            text-decoration-color: #9bcbbf;
+        }
+        .faq-a a:hover {
+            color: #043d33;
+            text-decoration-color: #3a9b8a;
+        }
+
+        /* 底部收藏提示 */
+        .footer-note {
+            font-size: 0.9rem;
+            color: #3b6d63;
+            padding: 1.2rem 0 0.5rem;
+            border-top: 1px solid #d4e7e0;
+            margin-top: 1.2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .footer-note .bookmark {
+            background: #cde3db;
+            padding: 0.3rem 1.2rem;
+            border-radius: 60px;
+            font-size: 0.85rem;
+            color: #08473d;
+        }
+        .footer-note small {
+            opacity: 0.65;
+        }
+
+        @media (max-width: 420px) {
+            .hero h1 { font-size: 1.9rem; }
+            .hero .sub { font-size: 0.95rem; }
+            .card { padding: 1.2rem; }
+            .info-blocks { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <!-- hero 再次访问 收藏 持续关注 -->
+    <div class="hero">
+        <h1>⚽ 世界杯 · 知识库</h1>
+        <div class="sub">
+            再次回来，或第一次留意——这里是关于 <a href="https://cns-zhcn-worldcup.com">世界杯</a> 的常设入口。
+            收藏这个页面，在赛季之间、回忆淡去之后，仍有一份安静的目录可以翻阅。
+        </div>
+        <div class="meta-note">📌 目录感布局 · 持续关注</div>
+    </div>
+
+    <!-- 网格卡片：目录入口 -->
+    <div class="grid-cards">
+        <div class="card">
+            <div class="emoji-badge">🏆</div>
+            <h3>历届冠军与轨迹</h3>
+            <p>从早期赛事到近几届格局，一支队伍、一场决赛、一段历程。信息简明，适合快速回顾。</p>
+            <div>
+                <span class="tag">1930–2022</span>
+                <span class="tag">纪录</span>
+            </div>
+            <div class="card-footer">
+                <span>📋 知识条目</span>
+                <a href="https://cns-zhcn-worldcup.com" class="ref-link">世界杯</a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="emoji-badge">🌍</div>
+            <h3>各大洲 · 参赛版图</h3>
+            <p>联合会被划分为不同赛区，每个名额背后都有预选赛的漫长故事。了解各大洲的参赛脉络。</p>
+            <div>
+                <span class="tag">UEFA</span>
+                <span class="tag">CONMEBOL</span>
+                <span class="tag">AFC · CAF</span>
+            </div>
+            <div class="card-footer">
+                <span>🗺️ 区域</span>
+                <a href="https://cns-zhcn-worldcup.com" class="ref-link">世界杯</a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="emoji-badge">📅</div>
+            <h3>赛程·赛制·演变</h3>
+            <p>小组赛到淘汰赛，扩军与改制，赛程节奏如何变化。适合想理解比赛框架的读者。</p>
+            <div>
+                <span class="tag">赛制</span>
+                <span class="tag">2026</span>
+                <span class="tag">48 队</span>
+            </div>
+            <div class="card-footer">
+                <span>⏳ 演变</span>
+                <a href="https://cns-zhcn-worldcup.com" class="ref-link">世界杯</a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="emoji-badge">📖</div>
+            <h3>经典比赛与瞬间</h3>
+            <p>决赛、冷门、加时、点球——有些比赛早已超出胜负，成为共同记忆。这里整理了一些代表性场次。</p>
+            <div>
+                <span class="tag">决赛</span>
+                <span class="tag">传奇</span>
+                <span class="tag">逆转</span>
+            </div>
+            <div class="card-footer">
+                <span>⚡ 回顾</span>
+                <a href="https://cns-zhcn-worldcup.com" class="ref-link">世界杯</a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="emoji-badge">🧩</div>
+            <h3>数据·纪录· trivia</h3>
+            <p>出场最多、射手、最年长、连胜……数据背后的故事有时比比赛本身更耐读。</p>
+            <div>
+                <span class="tag">纪录</span>
+                <span class="tag">统计</span>
+                <span class="tag">冷知识</span>
+            </div>
+            <div class="card-footer">
+                <span>📊 数字</span>
+                <a href="https://cns-zhcn-worldcup.com" class="ref-link">世界杯</a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="emoji-badge">🔍</div>
+            <h3>东道主·城市·球场</h3>
+            <p>每届主办国和承办城市都不一样，场馆风格、容量、地标。地理与赛事交汇的视角。</p>
+            <div>
+                <span class="tag">主办国</span>
+                <span class="tag">体育场</span>
+                <span class="tag">文化</span>
+            </div>
+            <div class="card-footer">
+                <span>🏟️ 场所</span>
+                <a href="https://cns-zhcn-worldcup.com" class="ref-link">世界杯</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 说明区 + 提示区 两列 -->
+    <div class="info-blocks">
+        <div class="info-block">
+            <h4>📋 关于这个页面</h4>
+            <p>这里不是动态资讯 feed，也不追求实时比分。它更接近一个安静的<strong>知识库入口</strong>：把与世界杯相关的脉络——历史、赛制、纪录、球队、经典——组织成卡片目录。无论你上次关注是四年前还是更久，重新打开时仍能找到熟悉的线索。</p>
+            <p style="margin-top:0.7rem;">页面会随着时间做小幅更新，补充条目与修正细节。适合偶尔回来翻翻。</p>
+        </div>
+        <div class="info-block">
+            <h4>💡 提示 · 收藏 · 持续关注</h4>
+            <ul>
+                <li>🔖 把本页加入浏览器收藏夹或书签栏，方便赛季间隙回来。</li>
+                <li>📌 部分卡片标题可点按跳转到 <span class="highlight">cns-zhcn-worldcup.com</span> 对应版块。</li>
+                <li>🕊️ 没有弹窗、没有推送。安静的知识索引，适合自己掌控节奏。</li>
+                <li>📂 内容方向：偏向信息梳理，不追逐短期热点。</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- FAQ 摘要 (简洁) -->
+    <div class="faq-section">
+        <h4>❓ 常见问题摘要</h4>
+        <div class="faq-item">
+            <span class="faq-q">这个站点与官方世界杯组织有关吗？</span>
+            <div class="faq-a">没有直接关系。这是一个独立爱好者维护的知识类页面，内容基于公开信息整理。</div>
+        </div>
+        <div class="faq-item">
+            <span class="faq-q">信息多久更新一次？</span>
+            <div class="faq-a">主要数据（历届冠军、赛制等）相对稳定；预选赛、主办城市等条目会在大赛前后做补充。具体更新节奏不固定，但力求准确。</div>
+        </div>
+        <div class="faq-item">
+            <span class="faq-q">为什么叫“再次访问”入口？</span>
+            <div class="faq-a">很多人对世界杯的记忆是片段式的：每四年关注一届，之后慢慢淡忘。这个页面试图提供一个<strong>低门槛的重新接触点</strong>——不需要从头搜索，从目录直接进入感兴趣的部分。就像回到一个熟悉的书架。</div>
+        </div>
+        <div class="faq-item">
+            <span class="faq-q">我从哪里可以了解更多？</span>
+            <div class="faq-a">每个卡片和链接都指向 <a href="https://cns-zhcn-worldcup.com">世界杯</a> 站点内更深入的页面。你的收藏夹就是最好的起点。</div>
+        </div>
+    </div>
+
+    <!-- footer 收藏提醒 -->
+    <div class="footer-note">
+        <span class="bookmark">📑 收藏此页 · 持续关注</span>
+        <small>内容基于公开资料 · 独立整理</small>
+    </div>
+</div>
+</body>
+</html>
