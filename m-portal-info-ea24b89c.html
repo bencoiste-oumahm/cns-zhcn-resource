@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>世界杯 · 入口与说明页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: #ebf7f6;
+            color: #1f3e3b;
+            line-height: 1.6;
+            padding: 0 16px;
+        }
+
+        /* 布局容器 */
+        .wrapper {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 1.4rem 0 2.8rem;
+        }
+
+        /* ---------- 顶部导航 ---------- */
+        .top-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            background: white;
+            border-radius: 36px;
+            padding: 10px 22px;
+            margin-bottom: 2rem;
+            box-shadow: 0 6px 14px rgba(0, 50, 50, 0.04);
+        }
+
+        .top-nav .logo-symbol {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: #0b6f6a;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .top-nav .logo-symbol span {
+            background: #1fa39a;
+            width: 10px;
+            height: 10px;
+            border-radius: 3px;
+            display: inline-block;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.6rem;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1f4e4a;
+            font-weight: 500;
+            padding: 4px 2px;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            border-bottom-color: #1fa39a;
+            color: #0e534d;
+        }
+
+        /* ---------- 核心介绍 Hero ---------- */
+        .hero {
+            background: linear-gradient(145deg, #d1efe8, #bfe6de);
+            border-radius: 48px;
+            padding: 2.4rem 2rem;
+            margin-bottom: 2.6rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .hero-text {
+            flex: 1 1 280px;
+        }
+
+        .hero-text h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: #09534c;
+            margin-bottom: 0.6rem;
+            letter-spacing: -0.01em;
+        }
+
+        .hero-text p {
+            max-width: 520px;
+            margin-bottom: 1.2rem;
+            color: #235a53;
+        }
+
+        .hero-text .link-wrap {
+            background: white;
+            display: inline-block;
+            padding: 6px 18px 6px 22px;
+            border-radius: 60px;
+            box-shadow: 0 2px 8px rgba(10, 70, 65, 0.08);
+        }
+
+        .hero-text .link-wrap a {
+            color: #09534c;
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 2px dotted #1fa39a;
+        }
+
+        .hero-text .link-wrap a:hover {
+            background: #edfcf8;
+            border-bottom-style: solid;
+        }
+
+        .hero-quick {
+            background: #f4fcfb;
+            border-radius: 30px;
+            padding: 0.75rem 1.6rem;
+            text-align: center;
+            flex: 0 0 auto;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+        }
+
+        .hero-quick small {
+            display: block;
+            color: #2c716a;
+            font-size: 0.8rem;
+        }
+
+        .hero-quick .badge {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: #0b6f6a;
+        }
+
+        /* ---------- 三个场景模块（网格卡片） ---------- */
+        .scenes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.6rem;
+            margin: 2rem 0 2.6rem;
+        }
+
+        .scene-card {
+            background: white;
+            border-radius: 28px;
+            padding: 1.8rem 1.2rem 1.6rem;
+            box-shadow: 0 8px 16px rgba(0, 60, 56, 0.04);
+            transition: 0.2s;
+            border: 1px solid #d7efe9;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .scene-card:hover {
+            transform: translateY(-4px);
+            border-color: #b1ddd2;
+            box-shadow: 0 12px 22px rgba(0, 70, 64, 0.06);
+        }
+
+        .scene-card .icon-place {
+            background: #daf2ed;
+            width: 44px;
+            height: 44px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin-bottom: 0.8rem;
+            color: #0c6058;
+        }
+
+        .scene-card h3 {
+            font-size: 1.25rem;
+            color: #0e4f48;
+            margin-bottom: 0.2rem;
+        }
+
+        .scene-card p {
+            font-size: 0.92rem;
+            color: #3e6e68;
+            flex: 1;
+        }
+
+        .scene-card .tag {
+            margin-top: 0.8rem;
+            background: #ecf8f5;
+            border-radius: 60px;
+            padding: 0.25rem 0.8rem;
+            font-size: 0.75rem;
+            color: #17675e;
+            align-self: flex-start;
+        }
+
+        /* ---------- 常见说明（FAQ摘要） ---------- */
+        .faq-section {
+            background: white;
+            border-radius: 40px;
+            padding: 2rem 2rem 2.4rem;
+            margin: 2.2rem 0 1.8rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+        }
+
+        .faq-section h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #0a524b;
+            margin-bottom: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .faq-section h2:before {
+            content: "❓";
+            font-size: 1.2rem;
+            background: #d4f0ea;
+            width: 38px;
+            height: 38px;
+            border-radius: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e2f0ec;
+            padding: 0.8rem 0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: 0;
+        }
+
+        .faq-item strong {
+            color: #1b5b53;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.1rem;
+        }
+
+        .faq-item p {
+            font-size: 0.95rem;
+            color: #30655d;
+            margin: 0;
+        }
+
+        .faq-note {
+            margin-top: 1.2rem;
+            font-size: 0.9rem;
+            background: #dff3ee;
+            padding: 0.6rem 1rem;
+            border-radius: 40px;
+            color: #115e55;
+        }
+
+        /* ---------- 额外说明、稳定入口 ---------- */
+        .entry-note {
+            background: #ddeee8;
+            border-radius: 40px;
+            padding: 1.6rem 1.8rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            margin: 2rem 0 1rem;
+        }
+
+        .entry-note .entry-text {
+            flex: 1 1 200px;
+        }
+
+        .entry-note .entry-text a {
+            color: #09574f;
+            font-weight: 600;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            text-decoration-color: #77b9ae;
+        }
+
+        .entry-note .entry-text a:hover {
+            background: #b9dfd4;
+            text-decoration-color: #0e5d54;
+        }
+
+        .entry-note .entry-badge {
+            background: #1fa39a;
+            color: white;
+            border-radius: 60px;
+            padding: 0.2rem 1.2rem;
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+
+        /* ---------- 页脚 ---------- */
+        .footer {
+            text-align: center;
+            padding: 2rem 0 1rem;
+            border-top: 1px solid #cce3dd;
+            margin-top: 1.8rem;
+            color: #386b63;
+            font-size: 0.85rem;
+        }
+
+        /* ---------- 响应式 ---------- */
+        @media (max-width: 640px) {
+            .top-nav {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+            .hero {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1.2rem;
+                padding: 1.8rem 1.2rem;
+            }
+            .hero-text h1 {
+                font-size: 1.8rem;
+            }
+            .hero-quick {
+                width: 100%;
+                text-align: left;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .scenes-grid {
+                grid-template-columns: 1fr;
+            }
+            .faq-section {
+                padding: 1.5rem 1rem;
+            }
+            .entry-note {
+                flex-direction: column;
+                gap: 12px;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .nav-links {
+                gap: 1rem;
+            }
+            .hero-text h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+
+    <!-- 顶部导航 -->
+    <nav class="top-nav">
+        <div class="logo-symbol">
+            <span></span> 2026 · 指南
+        </div>
+        <div class="nav-links">
+            <a href="#about">介绍</a>
+            <a href="#scenes">场景</a>
+            <a href="#faq">常见说明</a>
+            <a href="#stable">稳定入口</a>
+        </div>
+    </nav>
+
+    <!-- Hero + 核心介绍 -->
+    <div class="hero" id="about">
+        <div class="hero-text">
+            <h1>一场盛会，一个稳定入口</h1>
+            <p>对于即将到来的赛事，许多人希望快速找到可靠的信息起点。以下内容整理了与 <a href="https://m-portal-fifa2026.com">世界杯</a> 相关的几个实用层面，方便你从不同角度了解。</p>
+            <div class="link-wrap">
+                <span>📌 </span><a href="https://m-portal-fifa2026.com">世界杯</a> · 页面说明
+            </div>
+        </div>
+        <div class="hero-quick">
+            <small>当前页面方向</small>
+            <span class="badge">导航 & 场景</span>
+        </div>
+    </div>
+
+    <!-- 三个场景模块 网格卡片 -->
+    <div class="scenes-grid" id="scenes">
+        <div class="scene-card">
+            <div class="icon-place">📋</div>
+            <h3>赛事信息整理</h3>
+            <p>赛程、分组、场馆与时间表，常常需要反复核对。一个结构清晰的页面能减少查找时间。</p>
+            <span class="tag">赛程框架</span>
+        </div>
+        <div class="scene-card">
+            <div class="icon-place">🌐</div>
+            <h3>多语言入口</h3>
+            <p>不同地区的用户可能需要切换语言或了解当地转播渠道，统一入口能提供更直接的指引。</p>
+            <span class="tag">语言支持</span>
+        </div>
+        <div class="scene-card">
+            <div class="icon-place">🔍</div>
+            <h3>常见疑问指引</h3>
+            <p>票务、举办城市、球队名单、出行提示……这些问题汇集在一起，可以省去四处搜索的麻烦。</p>
+            <span class="tag">FAQ 聚合</span>
+        </div>
+    </div>
+
+    <!-- 常见说明 (FAQ摘要) -->
+    <div class="faq-section" id="faq">
+        <h2>常见说明摘要</h2>
+
+        <div class="faq-item">
+            <strong>这个页面是官方渠道吗？</strong>
+            <p>本页是围绕 <a href="https://m-portal-fifa2026.com">世界杯</a> 相关信息的介绍与导航说明，内容仅供参考，不代替任何官方公告。</p>
+        </div>
+        <div class="faq-item">
+            <strong>为什么强调“稳定入口”？</strong>
+            <p>大型赛事期间，各类资讯站点流量较大，一个固定的入口页面可以降低信息过载，也方便日后回顾。</p>
+        </div>
+        <div class="faq-item">
+            <strong>页面上的链接指向哪里？</strong>
+            <p>所有链接均指向 <a href="https://m-portal-fifa2026.com">世界杯</a> 相关域名下的页面，你可以在那里找到更多细节。</p>
+        </div>
+        <div class="faq-note">
+            💡 如果你寻找的是具体的赛程或球队内容，建议直接查看对应模块的更新说明。
+        </div>
+    </div>
+
+    <!-- 稳定入口额外说明 -->
+    <div class="entry-note" id="stable">
+        <div class="entry-text">
+            <strong>📍 稳定的信息起点</strong><br>
+            无论你是首次了解还是想确认后续安排，<a href="https://m-portal-fifa2026.com">世界杯</a> 这一页面都能为你提供持续更新的内容整合。建议保存书签，方便随时回来。
+        </div>
+        <span class="entry-badge">长期导航</span>
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footer">
+        页面仅供介绍 · 内容保持平实与克制<br>
+        <span style="opacity:0.6;">参考指向 · 2026</span>
+    </div>
+
+</div>
+
+</body>
+</html>
